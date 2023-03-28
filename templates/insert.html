@@ -1,0 +1,36 @@
+{% extends 'parent.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="flex p-12 gap-10">
+    <div class="w-9/12">
+        <div class=" w-full">
+            <div class="h-full bg-slate-200 p-8 rounded-xl shadow-xl">
+              <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{ form|crispy }}
+
+              <div class="flex justify-end">
+                <input type="submit" class="bg-teal-500 px-4 py-3 text-white hover:bg-teal-700 text-3xl font-black rounded">
+              </div>
+              </form>
+            </div>
+          </div>
+    </div>
+    
+    <div class="w-3/12">
+        <div class="bg-slate-200 p-10 rounded-xl shadow-xl">
+            <form action="{% url 'insertCategory'%}" method="post">
+                {%csrf_token %}
+                {{ categoryForm|crispy }}
+                <input type="submit" class="bg-teal-500 w-full px-3 py-2 rounded text-white hover:bg-teal-900" value="Create Category">
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock content %}

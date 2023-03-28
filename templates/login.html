@@ -1,0 +1,27 @@
+{% extends 'parent.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="flex p-12">
+    <div class="w-7/12 mx-auto">
+        <div class="p-4 w-full">
+            <h2 class="text-3xl font-bold">Login Here</h2>
+            <div class="h-full bg-gray-100 p-8 rounded">
+              <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{ form|crispy }}
+
+                <input type="submit" class="bg-teal-500 w-full px-3 py-2 rounded" value="Login">
+              </form>
+            </div>
+          </div>
+    </div>
+    
+    
+    
+</div>
+
+{% endblock content %}

@@ -1,0 +1,64 @@
+{% extends 'parent.html' %}
+
+
+{% block content %}
+
+<div class="flex">
+    <div class="w-10/12 p-10">
+        <div class="p-4 w-full">
+            <div class="h-full bg-gray-100 rounded border border-slate-300">
+             <div class="flex">
+                <div class="w-4/12">
+                    <img src="{{ post.image.url }}" class="w-full object-fill" alt="">
+                </div>
+                <div class="w-8/12  p-8 ">
+                    <h2 class="text-3xl font-semibold capitalize text-teal-700">{{ post.title }}</h2>
+                    <a class="inline-flex items-center">
+                        <span class="flex items-center gap-3 mt-2 text-slate-500 text-sm">
+                          <span >Category: {{ post.category }}</span>
+                          <span>Author : {{ post.author }}</span>
+                        </span>
+                      </a>
+                      <p class="leading-loose mb-6 text-xl">{{ post.content }}</p>
+                    
+                    
+                </div>
+             </div>
+             
+            </div>
+          </div>
+    
+          
+          <div class="flex gap-3">
+            <h1 class="text-3xl font-semibold text-teal-700 border-b border-teal-700 w-full">Related Posts</h1>
+          </div>
+          <div class="grid grid-cols-4 gap-3 mt-2">
+            {% for rpost in related_post %}
+
+            <div class="col">
+                <div class="bg-slate-200">
+                    <img src="{{ rpost.image.url }}" alt="" class="w-full h-36 object-cover">
+                    <div class="p-3">
+                        <h2 class="text-2xl font-bold">{{ rpost.title }}</h2>
+                        <p>{{ post.content|truncatechars:50 }}</p>
+                        <br>
+                        <a href="{% url 'viewPost' rpost.id %}" class="bg-gray-700 text-white hover:bg-gray-900 px-3 py-2 rounded">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div> 
+    <div class="w-2/12 h-[89.5vh] bg-teal-500">
+        <div class="flex flex-col h-full overflow-y-scroll">
+            <a class="bg-teal-700 text-white px-3 w-full py-5 font-semibold text-center text-2xl">Categories</a>
+            {% for cat  in categories %}
+                <a href="{% url 'filter' cat.id %}" class=" hover:bg-teal-700 text-xl  capitalize text-white px-3 w-full py-3 font-semibold">{{ cat.cat_title }}</a>
+           {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
